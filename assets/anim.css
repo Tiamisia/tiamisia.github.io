@@ -1,0 +1,68 @@
+/* Tiamisia — estilos de animación (se carga después de styles.css) */
+
+/* Nave 3D del hero: lienzo detrás del texto en escritorio, debajo del texto en celular */
+.hero{position:relative;overflow:hidden}
+.hero-in>div:first-child,.facts{position:relative;z-index:2}
+.hero-3d{position:absolute;inset:0;z-index:0}
+.hero-3d canvas{display:block;width:100%;height:100%}
+.hero-3d::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(14,35,56,.94) 0%,rgba(14,35,56,.75) 30%,rgba(14,35,56,0) 55%),
+             linear-gradient(0deg,rgba(14,35,56,.9) 0%,rgba(14,35,56,0) 22%)}
+@media (min-width:901px){.hero-in{min-height:600px}}
+@media (max-width:900px){
+  .hero-3d{position:relative;inset:auto;height:340px;margin:0 -24px}
+  .hero-3d::after{background:linear-gradient(0deg,rgba(14,35,56,.85) 0%,rgba(14,35,56,0) 25%)}
+}
+@media (max-width:640px){.hero-3d{margin:0 -16px;height:300px}}
+
+/* Estado inicial solo cuando la intro está activa (evita el destello antes de que cargue GSAP) */
+.anim .hero .eyebrow,.anim .hero .lead,.anim .hero .cta,.anim .facts>div,.anim [data-r],
+.anim .cards article,.anim .vals li,.anim .contact li,.anim .hero h1{visibility:hidden}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.wi{display:inline-block}
+
+/* Botones: flecha que avanza */
+.btn .arr,.dl .arr{display:inline-block;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.btn:hover .arr{transform:translateX(4px)}
+.dl a:hover .arr{transform:translateY(3px)}
+
+/* Tarjetas de servicio: viga ámbar que crece desde la izquierda */
+.cards article{position:relative}
+.cards article::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--ambar);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.cards article:hover::before{transform:scaleX(1)}
+.cards .n{display:inline-block;transition:letter-spacing .3s}
+.cards article:hover .n{letter-spacing:.2em}
+
+/* Cota de sección: la línea se traza al aparecer */
+.cota::after{transform-origin:left;transition:transform .9s cubic-bezier(.2,.7,.2,1) .15s}
+.anim .cota:not(.in)::after{transform:scaleX(0)}
+
+/* Proceso: línea de avance que se llena con el scroll */
+.track{position:relative;height:3px;background:var(--acero-2);margin-bottom:-3px}
+.track .fill{position:absolute;inset:0;background:var(--ambar);transform:scaleX(1);transform-origin:left}
+.anim .track .fill{transform:scaleX(0)}
+.steps li{border-top-color:transparent!important;transition:color .4s}
+.steps li::before,.steps b{transition:color .4s}
+.anim .steps li:not(.on){color:#5E6E7E}
+.anim .steps li:not(.on) b{color:#7F8D9B}
+
+/* Navegación: sombra al bajar */
+.nav{transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 6px 24px rgba(14,35,56,.08)}
+
+/* Valores: guion ámbar que crece */
+.vals li::before{transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1) .2s}
+.anim .vals li:not(.in)::before{transform:scaleX(0)}
+
+@media (max-width:900px){
+  .track{display:none}
+  .steps li{border-top-color:var(--acero-2)!important}
+  .steps li:first-child{border-top-color:var(--ambar)!important}
+}
+
+/* Movimiento reducido: sin trazos ni desplazamientos (la clase .anim no se activa);
+   se conservan los cambios de color al pasar el mouse. */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .cards article::before,.btn .arr,.dl .arr,.cota::after,.vals li::before{transition:none}
+}

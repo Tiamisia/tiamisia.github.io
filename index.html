@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tiamisia | Construcción de naves industriales en Querétaro</title>
+<meta name="description" content="Diseño, construcción y mantenimiento de naves industriales, obra civil y pisos industriales en Querétaro. Cálculo estructural, licencias y supervisión.">
+<meta property="og:title" content="Tiamisia — Servicios en Ingeniería y Construcción">
+<meta property="og:description" content="Diseñamos, construimos y mantenemos naves industriales en Querétaro.">
+<meta property="og:url" content="https://tartolas.github.io/tiamisia/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0E2338">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/anim.css">
+<script>
+  // Activa la intro animada solo si el usuario no pidió movimiento reducido. Si GSAP no carga, se muestra todo.
+  const q = location.search;  // ?motion=1 fuerza la intro (pruebas), ?reduce=1 la desactiva
+  if ((/[?&]motion=1/.test(q) || !matchMedia('(prefers-reduced-motion: reduce)').matches) && !/[?&]reduce=1/.test(q)) {
+    document.documentElement.classList.add('anim');
+    setTimeout(() => { if (!window.gsap) document.documentElement.classList.remove('anim'); }, 2500);
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="assets/anim.js" defer></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="assets/nave3d.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"GeneralContractor","name":"Tiamisia Servicios en Ingeniería y Construcción",
+ "url":"https://tartolas.github.io/tiamisia/","telephone":"+52 442 338 1533","email":"tiamisiasig@gmail.com",
+ "address":{"@type":"PostalAddress","addressLocality":"Querétaro","addressRegion":"Qro.","addressCountry":"MX"},
+ "areaServed":"Querétaro","openingHours":"Mo-Fr 08:00-17:00",
+ "founder":[{"@type":"Person","name":"Emiliano Ponce López"},{"@type":"Person","name":"Héctor Flores Noriega"}]}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="mark" viewBox="0 0 120 100"><path d="M10 88V50L60 24L110 50V88" fill="none" stroke="currentColor" stroke-width="9" stroke-miterlimit="10"/><path d="M42 58H78M60 58V88" fill="none" stroke="#E8641B" stroke-width="9"/></symbol>
+</defs></svg>
+
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand" aria-label="Tiamisia, inicio"><svg class="mk"><use href="#mark"/></svg><span>TIAMISIA</span></a>
+    <button class="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+    <nav class="links">
+      <a href="#servicios">Servicios</a><a href="#proceso">Cómo trabajamos</a><a href="#nosotros">Nosotros</a>
+      <a href="#contacto" class="btn sm">Solicitar cotización</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <p class="eyebrow">Ingeniería y construcción · Querétaro</p>
+      <h1>Diseñamos, construimos y mantenemos <em>naves industriales.</em></h1>
+      <p class="lead">Del cálculo estructural a la entrega llave en mano, con un solo responsable técnico, programa firmado y reporte de avance cada semana.</p>
+      <div class="cta"><a href="#contacto" class="btn">Agendar visita técnica <span class="arr" aria-hidden="true">→</span></a><a href="#servicios" class="btn ghost">Ver servicios</a></div>
+    </div>
+    <div class="hero-3d" aria-hidden="true"></div>
+  </div>
+  <div class="wrap facts">
+    <div><b>Llave en mano</b><span>o por etapas</span></div>
+    <div><b>Cálculo propio</b><span>NTC 2023 · CFE Viento y Sismo</span></div>
+    <div><b>Reporte semanal</b><span>avance, fotos y pendientes</span></div>
+    <div><b>Todo Querétaro</b><span>zona metropolitana y municipios</span></div>
+  </div>
+</section>
+
+<section id="servicios" class="sec">
+  <div class="wrap">
+    <p class="cota" data-r><span>01</span> Servicios</p>
+    <h2 data-r>Todo lo que necesita una nave, con una sola empresa.</h2>
+    <div class="cards" data-r>
+      <article><span class="n">01</span><h3>Diseño y cálculo estructural</h3><p>Estructura metálica y de concreto, cargas de viento y sismo, conexiones y planos de taller.</p></article>
+      <article><span class="n">02</span><h3>Construcción de naves industriales</h3><p>Cimentación, estructura, cubierta, fachadas, pisos e instalaciones, llave en mano.</p></article>
+      <article><span class="n">03</span><h3>Obra civil y pisos industriales</h3><p>Terracerías, plataformas, firmes para tránsito pesado, pavimentos y drenaje pluvial.</p></article>
+      <article><span class="n">04</span><h3>Mantenimiento industrial</h3><p>Cubiertas, impermeabilización, pintura anticorrosiva, canalones y pisos. Contratos preventivos anuales.</p></article>
+      <article><span class="n">05</span><h3>Ampliaciones y adecuaciones</h3><p>Nuevas crujías, mezzanines, oficinas en nave, andenes y bases para maquinaria.</p></article>
+      <article><span class="n">06</span><h3>Proyecto, licencias y supervisión</h3><p>Proyecto ejecutivo, trámites municipales, dictámenes estructurales y supervisión para el propietario.</p></article>
+    </div>
+    <p class="dl"><a href="docs/Tiamisia-Catalogo-de-servicios.pdf" download>Descargar catálogo completo (PDF) <span class="arr" aria-hidden="true">↓</span></a></p>
+  </div>
+</section>
+
+<section id="proceso" class="sec dark">
+  <div class="wrap">
+    <p class="cota" data-r><span>02</span> Cómo trabajamos</p>
+    <h2 data-r>Del primer recorrido a la entrega.</h2>
+    <div class="track" aria-hidden="true"><span class="fill"></span></div>
+    <ol class="steps">
+      <li><b>Visita</b>Recorrido, necesidades, terreno y restricciones de operación.</li>
+      <li><b>Propuesta</b>Alcance, programa y presupuesto desglosado por partida.</li>
+      <li><b>Ingeniería</b>Proyecto ejecutivo, cálculo estructural y licencias.</li>
+      <li><b>Obra</b>Residente en sitio, bitácora y reporte cada semana.</li>
+      <li><b>Entrega</b>Planos finales, garantía y plan de mantenimiento.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="nosotros" class="sec">
+  <div class="wrap two">
+    <div>
+      <p class="cota" data-r><span>03</span> Nosotros</p>
+      <h2 data-r>Ingeniería que se construye.</h2>
+      <p>Tiamisia es una empresa queretana de ingeniería y construcción. Nacimos de la ingeniería estructural: por eso cada proyecto empieza con un cálculo serio y termina con planos finales, garantía por escrito y un plan para conservar la inversión.</p>
+      <p>Trabajamos para la industria de Querétaro: logística, manufactura, automotriz, agroindustria y comercio.</p>
+      <div class="team">
+        <div><b>M.C. Emiliano Ponce López</b><span>Socio director · Ingeniería y proyecto</span></div>
+        <div><b>Ing. Héctor Flores Noriega</b><span>Socio director · Construcción y obra</span></div>
+      </div>
+    </div>
+    <ul class="vals" data-r>
+      <li><b>Un solo responsable</b>Un ingeniero a cargo de su proyecto de principio a fin.</li>
+      <li><b>Costos transparentes</b>Presupuesto por partida; los cambios se acuerdan por escrito.</li>
+      <li><b>Seguridad primero</b>Personal capacitado en trabajos en altura y EPP en toda obra.</li>
+      <li><b>En regla</b>Facturamos todo y cumplimos las obligaciones patronales de nuestro personal.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contacto" class="sec alt">
+  <div class="wrap two">
+    <div>
+      <p class="cota" data-r><span>04</span> Contacto</p>
+      <h2 data-r>¿Tiene un proyecto en puerta?</h2>
+      <p>Cuéntenos qué necesita y le respondemos en menos de un día hábil. La visita técnica dentro de la zona metropolitana de Querétaro no tiene costo.</p>
+      <ul class="contact" data-r>
+        <li><span>Teléfono</span><span class="v"><a href="tel:+524423381533">442 338 1533</a> · Héctor Flores<br><a href="tel:+525645033980">56 4503 3980</a> · Emiliano Ponce</span></li>
+        <li><span>WhatsApp</span><a href="https://wa.me/524423381533?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios" rel="noopener">Enviar mensaje</a></li>
+        <li><span>Correo</span><a href="mailto:tiamisiasig@gmail.com">tiamisiasig@gmail.com</a></li>
+        <li><span>Horario</span>8:00 a 17:00 h</li>
+        <li><span>Zona</span>Querétaro, Qro.</li>
+      </ul>
+    </div>
+    <form class="form" id="form" data-r>
+      <label>Nombre<input name="nombre" required autocomplete="name"></label>
+      <label>Empresa<input name="empresa" autocomplete="organization"></label>
+      <div class="row">
+        <label>Teléfono<input name="tel" type="tel" required autocomplete="tel"></label>
+        <label>Correo<input name="correo" type="email" autocomplete="email"></label>
+      </div>
+      <label>Servicio
+        <select name="servicio">
+          <option>Construcción de nave industrial</option><option>Diseño y cálculo estructural</option>
+          <option>Obra civil / pisos industriales</option><option>Mantenimiento industrial</option>
+          <option>Ampliación o adecuación</option><option>Proyecto, licencias o supervisión</option><option>Otro</option>
+        </select></label>
+      <label>Cuéntenos del proyecto<textarea name="mensaje" rows="4" placeholder="Ubicación, superficie aproximada, fecha deseada…"></textarea></label>
+      <button class="btn" type="submit">Enviar solicitud <span class="arr" aria-hidden="true">→</span></button>
+      <p class="note">Al enviar se abrirá su correo con el mensaje listo. Consulte nuestro <a href="aviso-de-privacidad.html">aviso de privacidad</a>.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="brand"><svg class="mk"><use href="#mark"/></svg><span>TIAMISIA</span></div>
+    <p>Servicios en Ingeniería y Construcción · Querétaro, México</p>
+    <p class="small">© 2026 Tiamisia · <a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+  </div>
+</footer>
+
+<script>
+const b=document.querySelector('.burger'),l=document.querySelector('.links');
+b.addEventListener('click',()=>{const o=l.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+l.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{l.classList.remove('open');b.setAttribute('aria-expanded',false)}));
+// Sin servidor: arma un correo. Al publicar, cambiar por Formspree/Netlify Forms o el backend del hosting.
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();const f=new FormData(e.target);
+  const body=[...f.entries()].map(([k,v])=>`${k}: ${v}`).join('\n');
+  location.href=`mailto:tiamisiasig@gmail.com?subject=${encodeURIComponent('Solicitud de cotización — '+f.get('servicio'))}&body=${encodeURIComponent(body)}`;
+});
+</script>
+</body>
+</html>
