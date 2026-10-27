@@ -151,7 +151,7 @@
         </select></label>
       <label>Cuéntenos del proyecto<textarea name="mensaje" rows="4" placeholder="Ubicación, superficie aproximada, fecha deseada…"></textarea></label>
       <button class="btn" type="submit">Enviar por WhatsApp <span class="arr" aria-hidden="true">→</span></button>
-      <p class="note">Al enviar se abrirá WhatsApp con su mensaje listo para Emiliano Ponce. Consulte nuestro <a href="aviso-de-privacidad.html">aviso de privacidad</a>.</p>
+      <p class="note">Al enviar se abrirá WhatsApp con su mensaje listo para Héctor Flores. Consulte nuestro <a href="aviso-de-privacidad.html">aviso de privacidad</a>.</p>
     </form>
   </div>
 </section>
@@ -168,7 +168,7 @@
 const b=document.querySelector('.burger'),l=document.querySelector('.links');
 b.addEventListener('click',()=>{const o=l.classList.toggle('open');b.setAttribute('aria-expanded',o)});
 l.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{l.classList.remove('open');b.setAttribute('aria-expanded',false)}));
-// Sin servidor: arma un mensaje de WhatsApp para Emiliano Ponce con los datos del formulario.
+// Sin servidor: arma un mensaje de WhatsApp para Héctor Flores con los datos del formulario.
 document.getElementById('form').addEventListener('submit',e=>{
   e.preventDefault();const f=new FormData(e.target),v=k=>(f.get(k)||'').trim();
   const msg=[
@@ -178,7 +178,7 @@ document.getElementById('form').addEventListener('submit',e=>{
     v('correo')&&`Correo: ${v('correo')}`,
     '(Enviado desde tiamisia.github.io)'
   ].filter(Boolean).join('\n');
-  window.open(`https://wa.me/525645033980?text=${encodeURIComponent(msg)}`,'_blank','noopener');
+  window.open(`https://wa.me/524423381533?text=${encodeURIComponent(msg)}`,'_blank','noopener');
 });
 </script>
 </body>
