@@ -1,6 +1,6 @@
 /* Tiamisia — nave industrial 3D que se construye en orden de obra (Three.js + GSAP).
    Unidades en metros. Claro 20 m, 5 crujías de 6 m, altura a alero 7 m, cumbrera 9 m.
-   ?t=N congela la secuencia en el segundo N. Con movimiento reducido se muestra terminada y sin cámara en movimiento. */
+   ?t=N congela la secuencia en el segundo N. Con movimiento reducido la obra se construye con la cámara fija. */
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
@@ -253,10 +253,13 @@ function init() {
   // ── Cámara: acercamiento a una zapata → se aleja y sube mientras se monta la nave ──
   const cam = { px: -15.2, py: 1.5, pz: -5.2, tx: -10, ty: -0.2, tz: 1.2 };
   const FINAL = { px: -49, py: 24, pz: -36, tx: 1.5, ty: 3, tz: 14 };
-  tl.to(cam, { keyframes: [
-    { px: -24, py: 6.5, pz: -14, tx: -6, ty: 1.8, tz: 4, duration: 2.6, ease: 'power1.inOut' },
-    { ...FINAL, duration: 4.9, ease: 'power2.inOut' },
-  ] }, 0.1);
+  // Con movimiento reducido la obra se construye igual, pero la cámara queda fija en la vista final
+  if (animate) {
+    tl.to(cam, { keyframes: [
+      { px: -24, py: 6.5, pz: -14, tx: -6, ty: 1.8, tz: 4, duration: 2.6, ease: 'power1.inOut' },
+      { ...FINAL, duration: 4.9, ease: 'power2.inOut' },
+    ] }, 0.1);
+  } else Object.assign(cam, FINAL);
 
   // ── Render ──
   const look = new THREE.Vector3();
@@ -281,8 +284,13 @@ function init() {
     camera.updateProjectionMatrix(); render(performance.now());
   }
   function render(now) { place(now); renderer.render(scene, camera); }
-  function loop(now) { if (!running) return; render(now); requestAnimationFrame(loop); }
-  function start() { if (!running && visible && animate) { running = true; requestAnimationFrame(loop); } }
+  function loop(now) {
+    if (!running) return;
+    render(now);
+    if (!animate && tl.progress() === 1) { running = false; return; }   // sin vaivén: al terminar la obra deja de dibujar
+    requestAnimationFrame(loop);
+  }
+  function start() { if (!running && visible && (animate || tl.progress() < 1)) { running = true; requestAnimationFrame(loop); } }
   function stop() { running = false; }
 
   new ResizeObserver(resize).observe(host);
@@ -291,7 +299,6 @@ function init() {
 
   const t = q.get('t');
   if (t !== null) { tl.seek(parseFloat(t)); syncVis(); render(performance.now()); }
-  else if (!animate) { tl.progress(1); syncVis(); Object.assign(cam, FINAL); }
   else { tl.play(); start(); }
 
   if (animate && matchMedia('(pointer: fine) and (min-width: 901px)').matches) {
