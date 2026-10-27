@@ -150,8 +150,8 @@
           <option>Ampliación o adecuación</option><option>Proyecto, licencias o supervisión</option><option>Otro</option>
         </select></label>
       <label>Cuéntenos del proyecto<textarea name="mensaje" rows="4" placeholder="Ubicación, superficie aproximada, fecha deseada…"></textarea></label>
-      <button class="btn" type="submit">Enviar solicitud <span class="arr" aria-hidden="true">→</span></button>
-      <p class="note">Al enviar se abrirá su correo con el mensaje listo. Consulte nuestro <a href="aviso-de-privacidad.html">aviso de privacidad</a>.</p>
+      <button class="btn" type="submit">Enviar por WhatsApp <span class="arr" aria-hidden="true">→</span></button>
+      <p class="note">Al enviar se abrirá WhatsApp con su mensaje listo para Emiliano Ponce. Consulte nuestro <a href="aviso-de-privacidad.html">aviso de privacidad</a>.</p>
     </form>
   </div>
 </section>
@@ -168,11 +168,17 @@
 const b=document.querySelector('.burger'),l=document.querySelector('.links');
 b.addEventListener('click',()=>{const o=l.classList.toggle('open');b.setAttribute('aria-expanded',o)});
 l.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{l.classList.remove('open');b.setAttribute('aria-expanded',false)}));
-// Sin servidor: arma un correo. Al publicar, cambiar por Formspree/Netlify Forms o el backend del hosting.
+// Sin servidor: arma un mensaje de WhatsApp para Emiliano Ponce con los datos del formulario.
 document.getElementById('form').addEventListener('submit',e=>{
-  e.preventDefault();const f=new FormData(e.target);
-  const body=[...f.entries()].map(([k,v])=>`${k}: ${v}`).join('\n');
-  location.href=`mailto:tiamisiasig@gmail.com?subject=${encodeURIComponent('Solicitud de cotización — '+f.get('servicio'))}&body=${encodeURIComponent(body)}`;
+  e.preventDefault();const f=new FormData(e.target),v=k=>(f.get(k)||'').trim();
+  const msg=[
+    `Hola, soy ${v('nombre')}${v('empresa')?` de ${v('empresa')}`:''}. Solicito cotización de: ${v('servicio')}.`,
+    v('mensaje')&&`Proyecto: ${v('mensaje')}`,
+    `Teléfono: ${v('tel')}`,
+    v('correo')&&`Correo: ${v('correo')}`,
+    '(Enviado desde tiamisia.github.io)'
+  ].filter(Boolean).join('\n');
+  window.open(`https://wa.me/525645033980?text=${encodeURIComponent(msg)}`,'_blank','noopener');
 });
 </script>
 </body>
